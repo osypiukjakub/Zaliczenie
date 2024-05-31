@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.projectmanagement.ProjectController">
+    <children>
+        <HBox spacing="10">
+            <Label text="Member:"/>
+            <TextField fx:id="personNameInput"/>
+            <Button text="Add Member" onAction="#addPerson"/>
+        </HBox>
+        <HBox spacing="10">
+            <Label text="Assignment Title:"/>
+            <TextField fx:id="assignmentTitleInput"/>
+            <Label text="Details:"/>
+            <TextField fx:id="assignmentDetailsInput"/>
+            <Button text="Add Assignment" onAction="#addAssignment"/>
+        </HBox>
+        <HBox spacing="10">
+            <Label text="Assign To:"/>
+            <ComboBox fx:id="personSelector"/>
+            <ComboBox fx:id="assignmentSelector"/>
+            <Button text="Assign" onAction="#assignPerson"/>
+        </HBox>
+        <HBox spacing="10">
+    <Label text="Log Hours:"/>
+    <TextField fx:id="hoursWorkedInput"/>
+    <Button text="Log Hours" onAction="#logHours"/>
+</HBox>
+
+        <HBox spacing="10">
+            <Button text="Generate Report" onAction="#generateReport"/>
+        </HBox>
+        <ListView fx:id="assignmentListView"/>
+    </children>
+</VBox>

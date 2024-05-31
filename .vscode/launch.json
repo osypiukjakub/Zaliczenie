@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch ApplicationLauncher",
+            "request": "launch",
+            "mainClass": "com.example.projectmanagement.ApplicationLauncher",
+            "projectName": "project-management"
+        }
+    ]
+}
