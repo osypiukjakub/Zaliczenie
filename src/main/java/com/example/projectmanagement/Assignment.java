@@ -9,6 +9,8 @@ public class Assignment {
     private Member assignedPerson;
     private LocalDateTime startTimestamp;
     private LocalDateTime endTimestamp;
+    private long loggedHours;
+
 
     public Assignment(String assignmentTitle, String assignmentDetails) {
         this.assignmentTitle = assignmentTitle;
@@ -19,7 +21,13 @@ public class Assignment {
     public String getAssignmentTitle() {
         return assignmentTitle;
     }
+    public void logHours(long hours) {
+        loggedHours += hours;
+    }
 
+    public long getLoggedHours() {
+        return loggedHours;
+    }
     public String getAssignmentDetails() {
         return assignmentDetails;
     }
@@ -57,7 +65,7 @@ public class Assignment {
 
     public long getTimeSpent() {
         if (endTimestamp != null && startTimestamp != null) {
-            return java.time.Duration.between(startTimestamp, endTimestamp).toHours();
+            return java.time.Duration.between(startTimestamp, endTimestamp).toSeconds();
         }
         return 0;
     }

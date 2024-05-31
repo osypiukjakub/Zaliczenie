@@ -27,6 +27,9 @@ public class ProjectController {
     @FXML
     private ListView<Assignment> assignmentListView;
 
+    @FXML
+private TextField hoursWorkedInput;
+
     private List<Member> memberRecords = new ArrayList<>();
     private List<Assignment> assignmentRecords = new ArrayList<>();
     private ObservableList<Assignment> observableAssignmentList;
@@ -46,7 +49,17 @@ public class ProjectController {
             }
         });
     }
-
+    @FXML
+    private void closeAssignment() {
+        Assignment assignment = assignmentListView.getSelectionModel().getSelectedItem();
+        if (assignment != null) {
+            assignment.completeAssignment();
+            System.out.println("Assignment closed: " + assignment.getAssignmentTitle());
+            observableAssignmentList.remove(assignment);
+        } else {
+            System.out.println("No assignment selected.");
+        }
+    }
     @FXML
     private void addPerson() {
         String name = personNameInput.getText();
@@ -86,4 +99,30 @@ public class ProjectController {
     private void generateReport() {
         ReportCreator.createReport(memberRecords, assignmentRecords);
     }
+    @FXML
+private void markAsDone() {
+    Assignment selectedAssignment = assignmentListView.getSelectionModel().getSelectedItem();
+    if (selectedAssignment != null) {
+        selectedAssignment.completeAssignment();
+        assignmentListView.refresh();
+    }
+}
+
+    @FXML
+private void logHours() {
+    Assignment assignment = assignmentListView.getSelectionModel().getSelectedItem();
+    if (assignment != null) {
+        String hoursText = hoursWorkedInput.getText();
+        try {
+            long hours = Long.parseLong(hoursText);
+            assignment.logHours(hours);
+            System.out.println("Logged " + hours + " hours for assignment: " + assignment.getAssignmentTitle());
+            hoursWorkedInput.clear();
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a valid number of hours.");
+        }
+    } else {
+        System.out.println("No assignment selected.");
+    }
+}
 }
